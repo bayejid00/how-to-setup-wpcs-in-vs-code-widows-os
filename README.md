@@ -5,3 +5,4 @@ This took me ages to get my head around in order to setup WordPress coding stand
 Browse this doc link to get instructions.
 https://htmlpreview.github.io/?https://github.com/bayejid00/how-to-setup-wpcs-in-vs-code-widows-os/blob/main/index.html
 
+<p>Source: <a href="https://eversionsystems.com/wordpress-coding-standards-in-vscode-for-windows/">https://eversionsystems.com/wordpress-coding-standards-in-vscode-for-windows/</a></p>
