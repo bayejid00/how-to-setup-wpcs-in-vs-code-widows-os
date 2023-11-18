@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>How to setup WPCS(WordPress-Coding-Standards) in Visual Studio - Windws OS</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+
+				<div class="entry-content">
+					<h1>How to setup WPCS(WordPress-Coding-Standards) in Visual Studio - Windws OS</h1>
+
+					<p>This took me ages to get my head around in order to setup WordPress coding standards in VSCode
+						for Windows.&nbsp; Even using the great plugin <a
+							href="https://marketplace.visualstudio.com/items?itemName=bmewburn.vscode-intelephense-client">Intelephense</a>
+						it doesn’t allow WordPress coding conventions which differ to PSR12.&nbsp; I’ll outline the
+						steps below to get this working in Windows.</p>
+					<ol>
+						<li>Install and download the <a href="https://getcomposer.org/download/">Composer-Setp.exe</a>
+						</li>
+						<li>Install PHP CodeSniffer (PHPCS) globally so it’s available for all projects.<br>
+							<code>composer global require "squizlabs/php_codesniffer=*"</code>
+						</li>
+						<li>Composer will be installed under your roaming Windows profile.&nbsp; Create a directory
+							called “standards” in the following location.<br>
+							<code>C:\Users\yourusername\AppData\Roaming\Composer\vendor\bin\standards</code>
+
+						</li>
+						<li>Using Git pull the latest version of the WordPress Coding Standards into this directory<br>
+							<code>
+								git clone https://github.com/WordPress/WordPress-Coding-Standards.git wpcs<br>
+								cd wpcs<br>
+								composer install
+							</code>
+						</li>
+						<li>Add the WordPress Coding Standards to the PHPCS installed paths.&nbsp; This will make it
+							available to be used by the code sniffer and beautifier.<br>
+							<code>phpcs --config-set installed_paths "C:\Users\yourusername\AppData\Roaming\Composer\vendor\bin\standards\wpcs"</code>
+
+						</li>
+						<li>You can confirm that the WordPress coding standard has been added by running the following
+							command.<br>
+							<code>phpcs -i</code><br>
+							You will see the following message. <br>
+							<p>
+								<i>The installed coding standards are MySource, PEAR, PSR1, PSR2, PSR12, Squiz, Zend,
+									WordPress, WordPress-Core, WordPress-Docs and WordPress-Extra</i>
+							</p>
+						</li>
+						<li>Open VSCode and download these two extensions&nbsp;<a
+								href="https://marketplace.visualstudio.com/items?itemName=ikappas.phpcs">phpcs</a> (code
+							sniffing) and <a
+								href="https://marketplace.visualstudio.com/items?itemName=persoderlind.vscode-phpcbf">phpcbf</a>
+							(code beautifying).</li>
+						<li>Add the following configuration to the settings.json file in VSCode.<br>
+							<code>"phpcs.enable": true,<br>
+		"phpcs.executablePath": <br>"C:\\Users\\yourusername\\AppData\\Roaming\\Composer\\vendor\\bin\\standards\\wpcs\\vendor\\bin\\phpcs.bat",<br>
+		"phpcs.standard": "WordPress",<br>
+		"phpcbf.enable": true,<br>
+		"phpcbf.documentFormattingProvider": true,<br>
+		"phpcbf.onsave": true,<br>
+		"phpcbf.executablePath": "C:\\Users\\yourusername\\AppData\\Roaming\\Composer\\vendor\\bin\\standards\\wpcs\\vendor\\bin\\phpcbf.bat",<br>
+		"phpcbf.standard": "WordPress",<br>
+		"[php]": {<br>
+			"editor.defaultFormatter": "persoderlind.vscode-phpcbf"<br>
+		},
+	</code><br>
+							I actually prefer to switch off formatting on save and use hot keys (ALT + SHIFT + F )
+							instead to format.
+						</li>
+						<li>Restart VS Code to ensure changes have been recognised.</li>
+					</ol>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
