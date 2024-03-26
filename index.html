@@ -28,21 +28,27 @@
 						<li>Install PHP CodeSniffer (PHPCS) globally so it’s available for all projects.<br>
 							<code>composer global require "squizlabs/php_codesniffer=*"</code>
 						</li>
-						<li>Composer will be installed under your roaming Windows profile.&nbsp; Create a directory
-							called “standards” in the following location.<br>
-							<code>C:\Users\yourusername\AppData\Roaming\Composer\vendor\bin\standards</code>
-
+						<li>Composer will be installed under your roaming Windows profile.
 						</li>
-						<li>Using Git pull the latest version of the WordPress Coding Standards into this directory<br>
+						<li>Using Git pull the latest version of the WordPress Coding Standards into you c drive or any directory<br>
 							<code>
 								git clone https://github.com/WordPress/WordPress-Coding-Standards.git wpcs<br>
 								cd wpcs<br>
 								composer install
 							</code>
 						</li>
+						<li>
+							Run this command to check installed coding standards
+<code>phpcs -i</code><br>
+							You will see the following message. <br>
+							<p>
+								<i>The installed coding standards are MySource, PEAR, PSR1, PSR2, PSR12, Squiz, Zend,
+									</i>
+							</p>						
+</li>
 						<li>Add the WordPress Coding Standards to the PHPCS installed paths.&nbsp; This will make it
 							available to be used by the code sniffer and beautifier.<br>
-							<code>phpcs --config-set installed_paths "C:\Users\yourusername\AppData\Roaming\Composer\vendor\bin\standards\wpcs"</code>
+							<code>phpcs --config-set installed_paths "C:\wpcs"</code>
 
 						</li>
 						<li>You can confirm that the WordPress coding standard has been added by running the following
@@ -61,12 +67,12 @@
 							(code beautifying).</li>
 						<li>Add the following configuration to the settings.json file in VSCode.<br>
 							<code>"phpcs.enable": true,<br>
-		"phpcs.executablePath": <br>"C:\\Users\\yourusername\\AppData\\Roaming\\Composer\\vendor\\bin\\standards\\wpcs\\vendor\\bin\\phpcs.bat",<br>
+		"phpcs.executablePath": <br>"C:\\wpcs\\vendor\\bin\\phpcs.bat",<br>
 		"phpcs.standard": "WordPress",<br>
 		"phpcbf.enable": true,<br>
 		"phpcbf.documentFormattingProvider": true,<br>
 		"phpcbf.onsave": true,<br>
-		"phpcbf.executablePath": "C:\\Users\\yourusername\\AppData\\Roaming\\Composer\\vendor\\bin\\standards\\wpcs\\vendor\\bin\\phpcbf.bat",<br>
+		"phpcbf.executablePath": "C:\\wpcs\\vendor\\bin\\phpcbf.bat",<br>
 		"phpcbf.standard": "WordPress",<br>
 		"[php]": {<br>
 			"editor.defaultFormatter": "persoderlind.vscode-phpcbf"<br>
